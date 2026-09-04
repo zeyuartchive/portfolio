@@ -26,29 +26,29 @@ export default function SiteHeader({ active, fixed = false }: SiteHeaderProps) {
     <div
       className={
         fixed
-          ? "fixed left-0 top-0 z-50 w-full bg-[#0b0b0b] pt-3 pb-4"
+          ? "fixed left-0 top-0 z-50 w-full bg-[#0b0b0b] px-[18px] pt-3 pb-4"
           : "mx-auto max-w-[1700px] px-[18px] pt-3"
       }
     >
       <header
-        className={`relative flex items-start justify-end ${
-          fixed ? "mx-auto max-w-[1700px] px-[18px]" : ""
+        className={`relative flex flex-col items-center sm:flex-row sm:items-start sm:justify-end ${
+          fixed ? "mx-auto max-w-[1700px]" : ""
         }`}
       >
         <Link
           href="/"
-          className={`absolute left-1/2 -translate-x-1/2 text-[22px] tracking-tight text-white/90 transition-colors duration-150 ${logoHover}`}
+          className={`text-[22px] tracking-tight text-white/90 transition-colors duration-150 sm:absolute sm:left-1/2 sm:-translate-x-1/2 ${logoHover}`}
         >
           zeyuartchive
         </Link>
 
-        <nav className="flex text-[22px]" aria-label="Main navigation">
+        <nav className="mt-5 flex w-full justify-between text-[19px] sm:mt-0 sm:w-auto sm:justify-start sm:text-[22px]" aria-label="Main navigation">
           {navigation.map((item, index) => (
             <Link
               key={item.section}
               href={item.href}
               aria-current={active === item.section ? "page" : undefined}
-              className={`${index === 1 ? "ml-8" : index === 2 ? "ml-16" : ""} ${
+              className={`py-2 sm:py-0 ${index === 1 ? "sm:ml-8" : index === 2 ? "sm:ml-16" : ""} ${
                 active === item.section
                   ? sectionStyles[item.section].active
                   : `text-white/90 transition-colors duration-150 ${sectionStyles[item.section].hover}`

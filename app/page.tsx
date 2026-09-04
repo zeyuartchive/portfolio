@@ -30,21 +30,21 @@ export default function Home() {
 
   <Link
     href="/about"
-    className="text-white/90 transition-colors duration-150 hover:text-[#00ffff]"
+    className="py-1 text-white/90 transition-colors duration-150 hover:text-[#00ffff]"
   >
     about
   </Link>
 
   <Link
     href="/work"
-    className="text-white/90 transition-colors duration-150 hover:text-[#ff00ff]"
+    className="py-1 text-white/90 transition-colors duration-150 hover:text-[#ff00ff]"
   >
     work
   </Link>
 
   <Link
     href="/fragments"
-    className="text-white/90 transition-colors duration-150 hover:text-[#ffff00]"
+    className="py-1 text-white/90 transition-colors duration-150 hover:text-[#ffff00]"
   >
     fragments
   </Link>

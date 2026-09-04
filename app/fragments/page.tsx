@@ -20,10 +20,10 @@ type FragmentItem = {
 
 /* ===== SIZE ===== */
 const sizeMap: Record<ItemSize, string> = {
-  sm: "w-[220px]",
-  md: "w-[280px]",
-  lg: "w-[360px]",
-  xl: "w-[460px]",
+  sm: "w-[150px] sm:w-[180px] md:w-[220px]",
+  md: "w-[180px] sm:w-[230px] md:w-[280px]",
+  lg: "w-[220px] sm:w-[290px] md:w-[360px]",
+  xl: "w-[280px] sm:w-[370px] md:w-[460px]",
 };
 
 const ratioMap: Record<ItemRatio, string> = {
@@ -173,14 +173,13 @@ function MediaItem({ item, preview, setPreview }: MediaItemProps) {
 
   return (
     <div
-      className={`relative shrink-0 transition-all duration-300 ${
-        isDimmed ? "blur-[1px] opacity-60" : "opacity-100"
-      }`}
+      className={`fragment-item relative shrink-0 transition-all duration-300 ${
+        isDimmed ? "fragment-dimmed" : ""
+      } ${item.overlap ? "fragment-overlap" : ""}`}
       style={{
-        transform: `translateY(${item.y}px)`,
-        marginLeft: item.overlap ? "-120px" : "0px",
+        "--fragment-y": `${item.y}px`,
         zIndex: item.overlap ? 10 : 1,
-      }}
+      } as React.CSSProperties}
     >
       <div
         className={`${sizeMap[item.size]} ${ratioMap[item.ratio]} flex items-center justify-center`}
@@ -204,6 +203,9 @@ function MediaItem({ item, preview, setPreview }: MediaItemProps) {
           />
         )}
       </div>
+      <p className="mt-2 max-w-[280px] text-[11px] leading-tight text-white/60 md:hidden">
+        {item.caption}
+      </p>
     </div>
   );
 }
@@ -226,7 +228,7 @@ function Row({ items, direction, preview, setPreview }: RowProps) {
             : "animate-marquee-right"
         }`}
       >
-        <div className="flex shrink-0 gap-[100px] pr-[100px]">
+        <div className="flex shrink-0 gap-10 pr-10 sm:gap-16 sm:pr-16 md:gap-[100px] md:pr-[100px]">
           {items.map((item) => (
             <MediaItem
               key={`a-${item.id}`}
@@ -237,7 +239,7 @@ function Row({ items, direction, preview, setPreview }: RowProps) {
           ))}
         </div>
 
-        <div className="flex shrink-0 gap-[100px] pr-[100px]">
+        <div className="flex shrink-0 gap-10 pr-10 sm:gap-16 sm:pr-16 md:gap-[100px] md:pr-[100px]">
           {items.map((item) => (
             <MediaItem
               key={`b-${item.id}`}
@@ -261,6 +263,10 @@ export default function FragmentsPage() {
   const previewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return;
+    }
+
     const move = (e: MouseEvent) => {
       target.current.x = e.clientX;
       target.current.y = e.clientY;
@@ -295,7 +301,7 @@ export default function FragmentsPage() {
       <SiteHeader active="fragments" />
 
       {/* CONTENT */}
-      <div className="mt-36 space-y-[160px] pb-[200px]">
+      <div className="mt-20 space-y-20 pb-28 sm:mt-28 sm:space-y-28 md:mt-36 md:space-y-[160px] md:pb-[200px]">
         <Row
           items={topItems}
           direction="right"
@@ -315,7 +321,7 @@ export default function FragmentsPage() {
       {preview && (
         <div
           ref={previewRef}
-          className="fixed z-[999] pointer-events-none"
+          className="pointer-events-none fixed z-[999] hidden md:block"
           style={{ top: 0, left: 0 }}
         >
           <div className="flex flex-col items-center gap-3">

@@ -7,9 +7,9 @@ export default function AboutPage() {
 
       {/* content */}
       <div className="mx-auto max-w-[1700px] px-[18px] pb-20">
-        <section className="mt-28 grid grid-cols-12 gap-[36px]">
+        <section className="mt-12 grid grid-cols-12 gap-x-[36px] gap-y-10 sm:mt-20 lg:mt-28">
           {/* left image */}
-          <div className="col-span-3">
+          <div className="col-span-12 sm:col-span-5 lg:col-span-3">
             <img
               src="/profile.jpg"
               alt="Zeyu Yin"
@@ -18,7 +18,7 @@ export default function AboutPage() {
           </div>
 
           {/* middle text */}
-          <div className="col-span-5">
+          <div className="col-span-12 sm:col-span-7 lg:col-span-5">
             <div className="max-w-[520px] space-y-6 text-[22px] leading-[1.1] text-white/90 font-light">
   <p>
     Zeyu Yin is a graphic designer based in Boston. He received his BFA in Graphic Design from Northeastern University and is currently completing his MFA at Boston University.
@@ -31,8 +31,8 @@ export default function AboutPage() {
           </div>
 
           {/* right contact */}
-          <div className="col-span-4 flex justify-end">
-            <div className="flex h-full w-[306px] flex-col justify-between">
+          <div className="col-span-12 flex justify-start lg:col-span-4 lg:justify-end">
+            <div className="flex min-h-[180px] w-full flex-col justify-between lg:w-[306px]">
               <div className="space-y-3 text-[22px] text-white/90">
                 <a
                   href="mailto:zeyuartchive@gmail.com"

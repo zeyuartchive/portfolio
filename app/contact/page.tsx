@@ -5,7 +5,7 @@ export default function ContactPage() {
     <main className="min-h-screen bg-[#0b0b0b] text-white">
       <SiteHeader />
 
-      <div className="mx-auto flex min-h-[calc(100vh-38px)] max-w-[1700px] flex-col px-[18px] pb-8">
+      <div className="mx-auto flex min-h-[calc(100vh-88px)] max-w-[1700px] flex-col px-[18px] pb-8 sm:min-h-[calc(100vh-38px)]">
 
 
 
