@@ -1,55 +1,11 @@
-import Link from "next/link";
-import localFont from "next/font/local";
-
-const haasThin = localFont({
-  src: "../fonts/NeueHaasUnicaPro-Thin.otf",
-});
+import SiteHeader from "../components/SiteHeader";
+import { haasThin } from "../fonts";
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[#0b0b0b] text-white">
+      <SiteHeader />
 
-      <div className="mx-auto flex min-h-screen max-w-[1700px] flex-col px-[18px] pt-3 pb-8">
-
-
-        {/* header */}
-        <header className="relative flex items-start justify-end">
-
-          <Link
-            href="/"
-            className="absolute left-1/2 -translate-x-1/2 text-[22px] tracking-tight text-white/90 transition-colors duration-150 hover:text-[#ffff00]"
-          >
-            zeyuartchive
-          </Link>
-
-
-          <nav className="flex text-[22px]">
-
-            <Link
-              href="/about"
-              className="text-white/90 transition-colors duration-150 hover:text-[#00ffff]"
-            >
-              about
-            </Link>
-
-
-            <Link
-              href="/work"
-              className="ml-8 text-white/90 transition-colors duration-150 hover:text-[#ff00ff]"
-            >
-              work
-            </Link>
-
-
-            <Link
-              href="/contact"
-              className="ml-16 text-[#ffff00]"
-            >
-              contact
-            </Link>
-
-          </nav>
-
-        </header>
+      <div className="mx-auto flex min-h-[calc(100vh-38px)] max-w-[1700px] flex-col px-[18px] pb-8">
 
 
 

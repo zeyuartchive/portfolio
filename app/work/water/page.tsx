@@ -1,50 +1,12 @@
 import Link from "next/link";
-import localFont from "next/font/local";
-
-const haasThin = localFont({
-  src: "../../fonts/NeueHaasUnicaPro-Thin.otf",
-});
+import SiteHeader from "../../components/SiteHeader";
+import { haasThin } from "../../fonts";
 
 export default function WaterPage() {
   return (
     <main className="min-h-screen bg-[#0b0b0b] text-white">
       
-      {/* fixed header */}
-      <header className="fixed left-0 top-0 z-50 w-full bg-[#0b0b0b] pt-3 pb-4">
-        <div className="relative mx-auto max-w-[1700px] px-[18px] flex items-start justify-end">
-          
-          <Link
-            href="/"
-            className="absolute left-1/2 -translate-x-1/2 text-[22px] tracking-tight text-white/90 transition-colors duration-150 hover:text-[#ff00ff]"
-          >
-            zeyuartchive
-          </Link>
-
-          <nav className="flex text-[22px]">
-            <Link
-              href="/about"
-              className="text-white/90 transition-colors duration-150 hover:text-[#00ffff]"
-            >
-              about
-            </Link>
-
-            <Link
-              href="/work"
-              className="ml-8 text-[#ff00ff]"
-            >
-              work
-            </Link>
-
-            <Link
-              href="/contact"
-              className="ml-16 text-white/90 transition-colors duration-150 hover:text-[#ffff00]"
-            >
-              fragments
-            </Link>
-          </nav>
-
-        </div>
-      </header>
+      <SiteHeader active="work" fixed />
 
       {/* body */}
       <div className="mx-auto max-w-[1700px] px-[18px] pt-[92px] pb-20">

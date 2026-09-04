@@ -1,24 +1,39 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import SiteHeader from "../components/SiteHeader";
+
+type ItemSize = "sm" | "md" | "lg" | "xl";
+type ItemRatio = "square" | "landscape" | "portrait";
+type MediaType = "image" | "video";
+
+type FragmentItem = {
+  id: string;
+  src: string;
+  type: MediaType;
+  caption: string;
+  size: ItemSize;
+  ratio: ItemRatio;
+  y: number;
+  overlap?: boolean;
+};
 
 /* ===== SIZE ===== */
-const sizeMap: any = {
+const sizeMap: Record<ItemSize, string> = {
   sm: "w-[220px]",
   md: "w-[280px]",
   lg: "w-[360px]",
   xl: "w-[460px]",
 };
 
-const ratioMap: any = {
+const ratioMap: Record<ItemRatio, string> = {
   square: "aspect-square",
   landscape: "aspect-[3/2]",
   portrait: "aspect-[2/3]",
 };
 
 /* ===== DATA（已替换成你的文件） ===== */
-const topItems = [
+const topItems: FragmentItem[] = [
   {
     id: "1",
     src: "/fragments/carving.jpg",
@@ -87,7 +102,7 @@ const topItems = [
   
 ];
 
-const bottomItems = [
+const bottomItems: FragmentItem[] = [
   {
     id: "52",
     src: "/fragments/sell.jpg",
@@ -147,7 +162,13 @@ const bottomItems = [
 ];
 
 /* ===== ITEM ===== */
-function MediaItem({ item, preview, setPreview }: any) {
+type MediaItemProps = {
+  item: FragmentItem;
+  preview: FragmentItem | null;
+  setPreview: (item: FragmentItem | null) => void;
+};
+
+function MediaItem({ item, preview, setPreview }: MediaItemProps) {
   const isDimmed = preview && preview.id !== item.id;
 
   return (
@@ -178,6 +199,7 @@ function MediaItem({ item, preview, setPreview }: any) {
         ) : (
           <img
             src={item.src}
+            alt={item.caption}
             className="max-w-full max-h-full object-contain cursor-pointer"
           />
         )}
@@ -187,7 +209,14 @@ function MediaItem({ item, preview, setPreview }: any) {
 }
 
 /* ===== ROW ===== */
-function Row({ items, direction, preview, setPreview }: any) {
+type RowProps = {
+  items: FragmentItem[];
+  direction: "left" | "right";
+  preview: FragmentItem | null;
+  setPreview: (item: FragmentItem | null) => void;
+};
+
+function Row({ items, direction, preview, setPreview }: RowProps) {
   return (
     <div className="marquee-row overflow-hidden">
       <div
@@ -198,7 +227,7 @@ function Row({ items, direction, preview, setPreview }: any) {
         }`}
       >
         <div className="flex shrink-0 gap-[100px] pr-[100px]">
-          {items.map((item: any) => (
+          {items.map((item) => (
             <MediaItem
               key={`a-${item.id}`}
               item={item}
@@ -209,7 +238,7 @@ function Row({ items, direction, preview, setPreview }: any) {
         </div>
 
         <div className="flex shrink-0 gap-[100px] pr-[100px]">
-          {items.map((item: any) => (
+          {items.map((item) => (
             <MediaItem
               key={`b-${item.id}`}
               item={item}
@@ -225,7 +254,7 @@ function Row({ items, direction, preview, setPreview }: any) {
 
 /* ===== PAGE ===== */
 export default function FragmentsPage() {
-  const [preview, setPreview] = useState<any>(null);
+  const [preview, setPreview] = useState<FragmentItem | null>(null);
 
   const pos = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
@@ -263,29 +292,7 @@ export default function FragmentsPage() {
 
   return (
     <main className="min-h-screen bg-[#0b0b0b] text-white overflow-x-hidden overflow-y-auto">
-      {/* HEADER */}
-      <div className="mx-auto max-w-[1700px] px-[18px] pt-3">
-        <header className="relative flex items-start justify-end">
-          <Link
-            href="/"
-            className="absolute left-1/2 -translate-x-1/2 text-[22px] tracking-tight text-white/90 hover:text-[#ffff00]"
-          >
-            zeyuartchive
-          </Link>
-
-          <nav className="flex text-[22px]">
-            <Link href="/about" className="text-white/90 hover:text-[#00ffff]">
-              about
-            </Link>
-            <Link href="/work" className="ml-8 text-white/90 hover:text-[#ff00ff]">
-              work
-            </Link>
-            <Link href="/fragments" className="ml-16 text-[#ffff00]">
-              fragments
-            </Link>
-          </nav>
-        </header>
-      </div>
+      <SiteHeader active="fragments" />
 
       {/* CONTENT */}
       <div className="mt-36 space-y-[160px] pb-[200px]">
@@ -327,6 +334,7 @@ export default function FragmentsPage() {
               ) : (
                 <img
                   src={preview.src}
+                  alt={preview.caption}
                   className="relative max-w-[620px] max-h-[65vh] object-contain"
                 />
               )}

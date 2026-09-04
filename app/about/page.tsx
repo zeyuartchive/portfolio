@@ -1,39 +1,9 @@
-import Link from "next/link";
+import SiteHeader from "../components/SiteHeader";
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#0b0b0b] text-white">
-      {/* header */}
-      <div className="mx-auto max-w-[1700px] px-[18px] pt-3">
-        <header className="relative flex items-start justify-end">
-          <Link
-            href="/"
-            className="absolute left-1/2 -translate-x-1/2 text-[22px] tracking-tight text-white/90 transition-colors duration-150 hover:text-[#00ffff]"
-          >
-            zeyuartchive
-          </Link>
-
-          <nav className="flex text-[22px]">
-            <Link href="/about" className="text-[#00ffff]">
-              about
-            </Link>
-
-            <Link
-              href="/work"
-              className="ml-8 text-white/90 transition-colors duration-150 hover:text-[#ff00ff]"
-            >
-              work
-            </Link>
-
-            <Link
-              href="/fragments"
-              className="ml-16 text-white/90 transition-colors duration-150 hover:text-[#ffff00]"
-            >
-              fragments
-            </Link>
-          </nav>
-        </header>
-      </div>
+      <SiteHeader active="about" />
 
       {/* content */}
       <div className="mx-auto max-w-[1700px] px-[18px] pb-20">
