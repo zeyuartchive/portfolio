@@ -35,7 +35,7 @@ const topItems = [
     caption: "The Doppelganger Logo Photography Campaign, 2025",
     size: "xl",
     ratio: "landscape",
-    y: -40,
+    y: 0,
     overlap: true,
   },
   {
@@ -96,6 +96,7 @@ const bottomItems = [
     size: "xl",
     ratio: "square",
     y: 0,
+    overlap: true
   },
   {
     id: "47",
@@ -124,6 +125,15 @@ const bottomItems = [
     size: "lg",
     ratio: "square",
     y: 30,
+  },
+  {
+    id: "17",
+    src: "/fragments/askance.jpg",
+    type: "image",
+    caption: "Askance, 2025",
+    size: "md",
+    ratio: "square",
+    y: 0,
   },
   {
     id: "89",
